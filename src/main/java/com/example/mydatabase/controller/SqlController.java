@@ -1,9 +1,8 @@
 package com.example.mydatabase.controller;
 
+import com.example.mydatabase.service.RedisService;
 import com.example.mydatabase.service.SqlService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,11 +15,7 @@ import java.util.regex.Pattern;
 public class SqlController {
 
     private final SqlService sqlService;
-
-    private final RedisTemplate<String, Object> redisTemplate;
-    private final HttpMessageConverters messageConverters;
-
-
+    private final RedisService redisService;
     // Ex 1: CREATE TABLE tableName ( col1 INTEGER, col2 STRING,....).
     // Ex 2: INSERT into tableName (col1, col2,..) VALUES(,)...
     @PostMapping("/execute")
@@ -44,11 +39,10 @@ public class SqlController {
             } else {
                 throw new IOException("Unsupported SQL command");
             }
-            redisTemplate.opsForValue().increment("SUCCESS");
+            redisService.incrementSuccessCounter();
             return "Command executed successfully";
-        } catch (Exception e) {
-            e.printStackTrace();
-            redisTemplate.opsForValue().increment("FAILURE");
+        }  catch (Exception e) {
+            redisService.incrementFailureCounter();
             return "Error executing command: " + e.getMessage();
         }
     }

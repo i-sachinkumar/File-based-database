@@ -81,7 +81,7 @@ public class SqlServiceImpl implements SqlService {
         File dataFile = new File(tableName + ".txt");
         if (!dataFile.exists()) {
             //create one
-            dataFile.createNewFile();
+            if(dataFile.createNewFile()) log.debug("{} created", tableName);
         }
 
         String normalizedSql = sql.toUpperCase();
@@ -94,7 +94,7 @@ public class SqlServiceImpl implements SqlService {
         Pattern pattern = Pattern.compile("\\(([^)]+)\\)");
         Matcher matcher = pattern.matcher(sql);
 
-        /**
+        /*
          * size will be 2
          * 1st entry: column names -> eg: col1, col2, col3
          * 2ns entry: corresponding values -> eg: 10, hi, there
