@@ -4,8 +4,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface RedisService {
-    public void incrementSuccessCounter();
-    public void incrementFailureCounter();
-    public Integer getSuccessCount();
-    public Integer getFailureCount();
+    void incrementSuccessCounter();
+    void incrementFailureCounter();
+    Integer getSuccessCount();
+    Integer getFailureCount();
 }
