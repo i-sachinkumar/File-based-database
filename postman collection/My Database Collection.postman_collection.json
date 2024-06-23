@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "71f5e1f3-eaa8-443d-955e-2c700128abf5",
+		"name": "My Database Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25624895",
+		"_collection_link": "https://bold-star-994236.postman.co/workspace/MyWorkSpace~82fdd526-b597-4387-8f31-b2d150406ee6/collection/25624895-71f5e1f3-eaa8-443d-955e-2c700128abf5?action=share&source=collection_link&creator=25624895"
+	},
+	"item": [
+		{
+			"name": "create table",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "CREATE   TABLE     myTabl32   (  col1   integer  ,  col2   STRING, col3 STRING) ;",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/execute",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "insert",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "INSERT into myTabl32 (col1, col2) VALUES (10, \"Hi trhh\");",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/execute",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get success",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "get failure",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
